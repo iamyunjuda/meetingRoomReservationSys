@@ -43,33 +43,46 @@
 // const MeetingScheduleInfo = mongoose.model('meetingScheduleInfo', MeetingScheduleInfoSchema);
 //
 //
-// // @Schema({timestamps : {createdAt:"createdAt", updatedAt:"updatedAt"}})
-// // class MeetingScheduleInfo {
-// //     @Prop({default: new Date(), type: mongoose.Schema.Types.Date})
-// //     createdAt: Date;
-// //     @Prop({default: new Date(), type: mongoose.Schema.Types.Date})
-// //     updatedAt: Date;
-// //
-// //     @Prop({required: true})
-// //     readonly meetingRoomId : number;
-// //
-// //     @Prop({required : true})
-// //     readonly meetingRoomName: string;
-// //
-// //     @Prop({default : true})
-// //     readonly isActivated: boolean;
-// //
-// //     @Prop({required : true})
-// //     readonly booker : string;
-// //
-// //     @Prop({required : true})
-// //     readonly startTime : string;
-// //
-// //     @Prop({required : true})
-// //     readonly endTime: string;
-// // }
-// //
-// //
-// // export const MeetingScheduleInfoSchema = SchemaFactory.createForClass(MeetingScheduleInfo)
-//
-//
+import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
+import {Document} from "mongoose";
+import {MeetingRoomInfo} from "./meetingRoomInfo";
+
+
+export type MeetingRoomScheduleInfoDocument = MeetingRoomScheduleInfo & Document;
+
+@Schema()
+export class MeetingRoomScheduleInfo {
+    @Prop({default: new Date()})
+    createdAt: Date;
+    @Prop({default: new Date()})
+    updatedAt: Date;
+
+    @Prop()
+    description : string;
+
+    @Prop()
+    readonly meetingRoomScheduleId: number;
+
+    @Prop({required: true})
+    readonly meetingRoomId : number;
+
+    @Prop({required : true})
+    readonly meetingRoomName: string;
+
+    @Prop({default : true})
+    readonly isActivated: boolean;
+
+    @Prop({required : true})
+    readonly booker : string;
+
+    @Prop({required : true})
+    readonly startTime : string;
+
+    @Prop({required : true})
+    readonly endTime: string;
+}
+
+
+export const MeetingRoomScheduleInfoSchema = SchemaFactory.createForClass(MeetingRoomScheduleInfo)
+
+
