@@ -2,13 +2,14 @@ import { Module } from '@nestjs/common';
 import {MeetingRoomService} from "./meeting-room.service";
 import {MeetingRoomController} from "./meeting-room.controller";
 import {MongooseModule} from "@nestjs/mongoose";
-import {MeetingRoomInfoSchema} from "./schema/meetingRoomInfo";
+import {MeetingRoomInfo, MeetingRoomInfoSchema} from "./schema/meetingRoomInfo";
+
 
 
 
 @Module({
-    //imports:[MongooseModule.forFeature([{name : MeetingRoomInfoSchema , schema: MeetingRoomInfoSchema}]),
+    providers:[MeetingRoomService],
     controllers :[MeetingRoomController],
-    providers:[MeetingRoomService]
+    imports:[MongooseModule.forFeature([{name : MeetingRoomInfo.name , schema: MeetingRoomInfoSchema}])],
 })
 export class MeetingRoomModule {}

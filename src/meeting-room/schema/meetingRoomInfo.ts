@@ -1,25 +1,58 @@
-import {IsNumber, IsString} from "class-validator";
+
+import {Document} from "mongoose";
 import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
-import * as mongoose from "mongoose";
+
+
+// export const MeetingRoomInfoSchema = new mongoose.Schema({
+//
+//     createdAt: {
+//         type: Date,
+//         required: true,
+//     },
+//
+//     updatedAt:  {
+//         type: Date,
+//         required: true,
+//     },
+//
+//
+//     meetingRoomId :{
+//         type:Date,
+//         required: true,
+//     },
+//      meetingRoomName: {
+//         type: String,
+//          required :true,
+//      },
+//     isActivated:{
+//         type: Boolean,
+//         default: true,
+//     }
+//
+//
+// });
+// const MeetingRoomInfo =mongoose.model('MeetingRoomInfo',MeetingRoomInfoSchema );
+
 
 export type MeetingRoomInfoDocument = MeetingRoomInfo & Document;
 
-@Schema({timestamps : {createdAt:"createdAt", updatedAt:"updatedAt"}})
-class MeetingRoomInfo {
-    @Prop({default: new Date(), type: mongoose.Schema.Types.Date})
+@Schema()
+export class MeetingRoomInfo {
+    @Prop()
     createdAt: Date;
-    @Prop({default: new Date(), type: mongoose.Schema.Types.Date})
+
+    @Prop()
     updatedAt: Date;
 
-    @Prop({required: true})
-    readonly meetingRoomId : number;
+    @Prop()
+     meetingRoomId : number;
 
-    @Prop({required : true})
-    readonly meetingRoomName: string;
+    @Prop()
+     meetingRoomName: string;
 
-    @Prop({default : true})
-    readonly isActivated: boolean;
+    @Prop()
+     isActivated: boolean;
 
 }
 
-export const MeetingRoomInfoSchema = SchemaFactory.createForClass(MeetingRoomInfo)
+export const MeetingRoomInfoSchema = SchemaFactory.createForClass(MeetingRoomInfo);
