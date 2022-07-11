@@ -5,8 +5,6 @@ import {CreateMeetingRoomDto} from "./dto/create-meetingroom.dto";
 import {MeetingRoomInfo, MeetingRoomInfoDocument} from "./schema/meetingRoomInfo";
 import {UpdateMeetingRoomDto} from "./dto/update-meetingroom.dto";
 
-
-
 @Injectable()
 export class MeetingRoomService {
    constructor(@InjectModel(MeetingRoomInfo.name)  private readonly model: Model<MeetingRoomInfoDocument>){}
@@ -22,11 +20,13 @@ export class MeetingRoomService {
        return await this.model.find().exec();
    }
 
-   async update(meetingRoomId: number, updateMeetingRoomData :UpdateMeetingRoomDto):Promise<MeetingRoomInfo>{
-       const updateModel : any = {...updateMeetingRoomData};
-       console.log(updateModel);
+   async update(meetingRoomId: number, updateMeetingRoomData :UpdateMeetingRoomDto):Promise<MeetingRoomInfo> {
+       const updateModel: any = {...updateMeetingRoomData};
+       return await this.model.findOneAndUpdate({meetingRoomId: meetingRoomId}, {$set: updateModel}, {new: true}).exec();
 
-      return await this.model.findOneAndUpdate({meetingRoomId :meetingRoomId},{$set:updateModel},{new:true}).exec();  }
+   }
 
-
+    async delete(meetingRoomId: number) {
+       return this.model.deleteOne({meetingRoomId: meetingRoomId});
+    }
 }

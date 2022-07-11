@@ -1,7 +1,8 @@
-import {Body, Controller, Get, Param, Patch, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Patch, Post} from '@nestjs/common';
 import {CreateMeetingRoomDto} from "./dto/create-meetingroom.dto";
 import {MeetingRoomService} from "./meeting-room.service";
 import {UpdateMeetingRoomDto} from "./dto/update-meetingroom.dto";
+
 
 @Controller('meeting-room')
 export class MeetingRoomController {
@@ -21,9 +22,12 @@ export class MeetingRoomController {
 
     @Patch(':meetingRoomId')
     async update(@Param('meetingRoomId')  meetingRoomId:number, @Body() updateMeetingRoomData : UpdateMeetingRoomDto){
-        console.log(updateMeetingRoomData)
-        console.log(meetingRoomId)
         return await this.service.update(meetingRoomId, updateMeetingRoomData);
+    }
+
+    @Delete(':meetingRoomId')
+    async delete(@Param('meetingRoomId') meetingRoomId : number){
+        return await this.service.delete(meetingRoomId);
     }
 
 
