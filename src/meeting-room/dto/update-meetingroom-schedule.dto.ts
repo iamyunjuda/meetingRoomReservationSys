@@ -8,12 +8,12 @@
 //
 // export type CreateMeetingRoomScheduleDtoDocument = CreateMeetingRoomScheduleDto & Document;
 
-import {BaseMeetingRoomDto} from "./base-meetingroom.dto";
-import {IsString} from "class-validator";
+
+import {IsBoolean} from "class-validator";
 import {BaseMeetingRoomScheduleDto} from "./base-meetingroom-schedule.dto";
 
-export class CreateMeetingRoomScheduleDto extends BaseMeetingRoomScheduleDto {
-    isActivated:boolean;
-
+export class UpdateMeetingRoomScheduleDto extends BaseMeetingRoomScheduleDto {
+    @IsBoolean()
+    isActivated? : boolean;
 }
 // export const  CreateMeetingRoomScheduleDtoSchema = SchemaFactory.createForClass(CreateMeetingRoomScheduleDto);
