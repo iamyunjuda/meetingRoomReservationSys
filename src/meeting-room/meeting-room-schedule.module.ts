@@ -11,4 +11,4 @@ import {MeetingRoomScheduleInfo, MeetingRoomScheduleInfoSchema} from "./schema/m
     controllers :[MeetingRoomScheduleController],
     imports:[MongooseModule.forFeature([{name : MeetingRoomScheduleInfo.name , schema: MeetingRoomScheduleInfoSchema}])],
 })
-export class MeetingRoomModule {}
+export class MeetingRoomScheduleModule {}
